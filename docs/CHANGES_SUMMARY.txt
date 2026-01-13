@@ -1,0 +1,115 @@
+================================================================================
+UNCOMMITTED REVIEW AGENT - COMPLETE FEATURE SET
+================================================================================
+
+CURRENT STATE:
+1. Delegation System: ✅ ACTIVE
+   - Main agent automatically delegates to @security-review
+   - Main agent automatically delegates to @performance-review
+   - Subagents hidden from autocomplete
+   - Integrated results in single review
+
+2. Auto-Save System: ✅ ACTIVE
+   - All reviews saved as markdown files
+   - Timestamped filenames
+   - Saved in .review/ directory
+   - Full metadata included
+
+================================================================================
+FILES:
+================================================================================
+
+1. opencode-agent-uncommitted-review.md (Main Agent)
+   - Mode: subagent
+   - Temperature: 0.1
+   - Permissions: Write (review files), Read-only git
+   - Features: Auto-delegation, Auto-save, Metadata
+
+2. opencode-agent-security-review.md (Subagent)
+   - Mode: subagent, hidden: true
+   - Temperature: 0.1
+   - Permissions: Read-only
+   - Focus: Security vulnerabilities only
+
+3. opencode-agent-performance-review.md (Subagent)
+   - Mode: subagent, hidden: true
+   - Temperature: 0.1
+   - Permissions: Read-only
+   - Focus: Performance issues only
+
+================================================================================
+USAGE:
+================================================================================
+
+STANDARD (Recommended):
+  @uncommitted-review
+  
+DIRECT SUBAGENTS:
+  @security-review
+  @performance-review
+
+================================================================================
+OUTPUT:
+================================================================================
+
+1. CONVERSATION: Full review shown to user
+2. FILE SAVED: .review/uncommitted-YYYY-MM-DD-HHMMSS-{branch}.md
+3. METADATA: Timestamp, branch, scores included
+4. SUBAGENT STATUS: Shows which agents were invoked
+
+================================================================================
+FILE SAVING PATTERNS:
+================================================================================
+
+ALLOWED WRITE PATTERNS:
+  - *.review.md
+  - REVIEW*.md
+  - .review/*.md
+
+FILENAME FORMAT:
+  .review/uncommitted-2025-01-13-143022-main.md
+  OR
+  REVIEW-main-20250113143022.md
+
+================================================================================
+BENEFITS:
+================================================================================
+
+1. Single command triggers comprehensive review
+2. Intelligent automatic delegation
+3. Expert-level specialized analysis
+4. Integrated cohesive output
+5. Auto-saved permanent records
+6. Team collaboration ready
+7. CI/CD integration ready
+8. Full audit trail
+
+================================================================================
+INSTALLATION:
+================================================================================
+
+cp opencode-agent-*.md ~/.config/opencode/agent/
+# Restart OpenCode
+opencode
+@uncommitted-review
+
+================================================================================
+DOCUMENTATION:
+================================================================================
+
+1. README.md - Full project documentation
+2. QUICKSTART.md - Getting started guide
+3. QUICK_REFERENCE.md - Quick reference
+4. AGENT_UPDATE_SUMMARY.md - Delegation system details
+5. FILE_SAVING_GUIDE.md - Complete file saving docs
+6. AUTO_SAVE_UPDATE.md - Auto-save feature details
+7. agent-flow.md - Visual flow diagrams
+8. AGENT_INSTALLATION.md - Installation guide
+9. USAGE.md - Usage documentation
+10. CHANGES_SUMMARY.txt - This file
+
+================================================================================
+STATUS: READY TO USE
+================================================================================
+All features implemented and documented.
+Copy agents to ~/.config/opencode/agent/ and restart OpenCode.

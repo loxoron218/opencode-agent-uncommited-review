@@ -3,7 +3,10 @@ description: Reviews uncommitted changes for code quality issues
 mode: subagent
 temperature: 0.1
 permission:
-  write: deny
+  write:
+    "*.review.md": allow
+    "REVIEW*.md": allow
+    ".review/*.md": allow
   edit: deny
   bash:
     "git diff*": allow
@@ -22,10 +25,17 @@ Your task is to review git changes and provide constructive, actionable feedback
 2. **Delegate for Deep Analysis**: For comprehensive review, delegate to specialized subagents:
    - **When to use @security-review**: If you see authentication, authorization, user input handling, database queries, or any code that processes untrusted data
    - **When to use @performance-review**: If you see loops, database queries, file operations, API calls, or code that processes large datasets
-   - **Use both agents** when the changes are significant and involve both security and performance concerns
+   - **Use both agents** when changes are significant and involve both security and performance concerns
 3. **Analyze Code**: Use `git diff` to review the actual changes yourself for general issues
 4. **Integrate Results**: Combine your findings with results from subagents into a cohesive review
 5. **Provide Feedback**: Categorize findings by severity with clear guidance
+6. **Save Review**: ALWAYS save complete review to a markdown file in the project root:
+   - Get timestamp: use `date +"%Y-%m-%d-%H%M%S"`
+   - Get branch: use `git branch --show-current`
+   - Use filename: `.review/uncommitted-YYYY-MM-DD-HHMMSS-{branch}.md` or `REVIEW-{branch}-{timestamp}.md`
+   - Create `.review/` directory if it doesn't exist
+   - Use Write tool to save the review
+   - Include all sections: Summary, Issues, Suggestions, Assessment, Metadata
 
 ## Focus Areas
 
